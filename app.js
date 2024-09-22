@@ -8,19 +8,19 @@ const petRoutes = require('./api/pets.router.js');
 const connectDB = require("./database.js");
 const notFoundHandler = require('./middleware/notFoundHandler.js');
 const errorHandler = require('./middleware/errorHandler.js');
-
+const path = require("path")
 //init
 const PORT = process.env.PORT || 8000;
 dotenv.config();
 const app = express();
-
+connectDB();
 // Middleware
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-
+app.use("/media",express.static(path.join(__dirname,"media")));
 // MongoDB connection
-connectDB();
+
 
 // Routes
 app.use("/api/pets/",petRoutes);
