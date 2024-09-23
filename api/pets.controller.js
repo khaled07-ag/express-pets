@@ -12,7 +12,7 @@ const getAllPets = async (req, res, next) => {
 const createPet = async (req, res, next) => {
   try {
   if(req.file){
-  req.body.image = req.file.path;
+  req.body.petImage = req.file.path;
   }
   console.log(req.file)
     const newPet = await Pet.create(req.body);
